@@ -1,0 +1,44 @@
+{% extends "learning_logs/layout.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>
+        Log in to your account.
+    </h2>
+{% endblock header %}
+
+{% block body %}
+
+    {% comment %}<!--{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}-->
+    <!--django-bootstrap3会自动管理表单错误，故此处我们从模板中删除判断代码块。-->{% endcomment %}
+
+    <form method="post" action="{% url 'users:login' %}" class="form">
+        {% csrf_token %}
+        {% comment %}<input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+
+        <button name="submit">log in</button>-->
+
+        {{ form.as_p }}{% endcomment %}
+
+        <div class="input-group" style="position: absolute; left: 50%; transform: translate(-50%, -50%)">
+            <input type="text" name="username" placeholder="Username" aria-describedby="sizing-addon1">
+        </div>
+        <div class="input-group" style="position: absolute; left: 50%; transform: translate(-50%, 60%)">
+            <input type="password" name="password" placeholder="Password" aria-describdy="sizing-addon2">
+
+        </div>
+
+
+
+        {% buttons %}
+            <button name="submit" class="btn btn-primary" style="position: absolute; left: 50%; transform: translate(-50%, 50px)">log in</button>
+        {% endbuttons %}
+        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+
+    </form>
+
+    
+{% endblock body%}
